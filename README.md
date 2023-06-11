@@ -1,2 +1,8 @@
 # Golang (Go) REST API Template w/ MongoDB & GIN
-# golang-rest
+
+Sample .env
+```
+MONGO_URI=mongodb://localhost:27017
+MONGO_DB=myDB
+MONGO_USER_COLLECTION=users
+```
