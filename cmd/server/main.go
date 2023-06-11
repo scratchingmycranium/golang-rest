@@ -7,6 +7,7 @@ import (
 	"github.com/scratchingmycranium/golang-rest/config"
 	"github.com/scratchingmycranium/golang-rest/http"
 	"github.com/scratchingmycranium/golang-rest/repository"
+	"github.com/scratchingmycranium/golang-rest/service"
 	"github.com/scratchingmycranium/golang-rest/utils"
 )
 
@@ -27,7 +28,8 @@ func main() {
 	router := utils.InitRouter()
 
 	userRepo := repository.InitUserRepo(mongoClient, config.MongoDB, config.MongoUserCollection)
-	userHandler := http.InitUserHandler(userRepo)
+	userSvc := service.InitUserService(userRepo)
+	userHandler := http.InitUserHandler(userSvc)
 
 	userHandler.RegisterUserRoutes(router)
 

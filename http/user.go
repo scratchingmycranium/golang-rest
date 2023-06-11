@@ -8,12 +8,12 @@ import (
 )
 
 type userHandler struct {
-	userRepo interfaces.IUserRepo
+	userSvc interfaces.IUserService
 }
 
-func InitUserHandler(userRepo interfaces.IUserRepo) *userHandler {
+func InitUserHandler(userSvc interfaces.IUserService) *userHandler {
 	return &userHandler{
-		userRepo: userRepo,
+		userSvc: userSvc,
 	}
 }
 
@@ -25,7 +25,7 @@ func (h *userHandler) RegisterUserRoutes(r *gin.Engine) {
 func (h *userHandler) getUser(c *gin.Context) {
 	// id := c.Param("id")
 
-	user, err := h.userRepo.Get()
+	user, err := h.userSvc.Get()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
